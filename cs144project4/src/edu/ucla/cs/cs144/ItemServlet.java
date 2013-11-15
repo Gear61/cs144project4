@@ -40,6 +40,20 @@ public class ItemServlet extends HttpServlet implements Servlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		AuctionSearchClient searcher = new AuctionSearchClient();
+		String xml = searcher.getXMLDataForItemId("1043374545");
+		try
+		{
+			Document doc = loadXMLFromString(searcher.getXMLDataForItemId("1043374545"));
+		}
+		catch (Exception e)
+		{
+			xml = "WE DUN GOOFED.";
+			e.printStackTrace();
+		}
 		
+		request.setAttribute("query", "Random");
+		request.setAttribute("results", xml);
+		request.getRequestDispatcher("/basicSearch.jsp").forward(request, response);
 	}
 }
