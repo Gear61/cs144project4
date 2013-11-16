@@ -31,8 +31,7 @@ public class AuctionSearchClient
 			{ query, new Integer(numResultsToSkip), new Integer(numResultsToReturn) };
 			Class[] returnTypes = new Class[]
 			{ SearchResult[].class };
-			Object[] reply = null; // rpcClient.invokeBlocking(basicSearchOp,
-									// parameters, returnTypes);
+			Object[] reply = rpcClient.invokeBlocking(basicSearchOp, parameters, returnTypes);
 			return (SearchResult[]) reply[0];
 		}
 		catch (AxisFault e)
@@ -56,7 +55,7 @@ public class AuctionSearchClient
 			{ constraints, new Integer(numResultsToSkip), new Integer(numResultsToReturn) };
 			Class[] returnTypes = new Class[]
 			{ SearchResult[].class };
-			Object[] reply = null; // rpcClient.invokeBlocking(advancedSearchOp, parameters, returnTypes);
+			Object[] reply = rpcClient.invokeBlocking(advancedSearchOp, parameters, returnTypes);
 			return (SearchResult[]) reply[0];
 		}
 		catch (AxisFault e)
@@ -80,7 +79,7 @@ public class AuctionSearchClient
 			{ itemId };
 			Class[] returnTypes = new Class[]
 			{ String.class };
-			Object[] reply = null; // rpcClient.invokeBlocking(getXmlOp, parameters, returnTypes);
+			Object[] reply = rpcClient.invokeBlocking(getXmlOp, parameters, returnTypes);
 			return (String) reply[0];
 		}
 		catch (AxisFault e)
@@ -104,7 +103,7 @@ public class AuctionSearchClient
 			{ message };
 			Class[] returnTypes = new Class[]
 			{ String.class };
-			Object[] reply = null; // rpcClient.invokeBlocking(echoOp, parameters, returnTypes);
+			Object[] reply = rpcClient.invokeBlocking(echoOp, parameters, returnTypes);
 			return (String) reply[0];
 		}
 		catch (AxisFault e)
