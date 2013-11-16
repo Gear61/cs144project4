@@ -33,7 +33,8 @@ public class SearchServlet extends HttpServlet implements Servlet
 
 			for (int i = 0; i < results.length; i++)
 			{
-				searchResults += results[i].getItemId() + ": " + results[i].getName() + "<br>";
+				searchResults += "<a href=\"./item?id=" + results[i].getItemId() + "\">" + results[i].getItemId() + "</a>";
+				searchResults += ": " + results[i].getName() + "<br>";
 			}
 			
 			request.setAttribute("query", query);

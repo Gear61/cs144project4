@@ -3,7 +3,8 @@
     <title>Basic Search Results</title>
 </head>
 <body>
-	<FORM METHOD="GET" ENCTYPE="multipart/form-data" ACTION=search>
+	<a href="./">Return to Homepage</a>
+	<br><FORM METHOD="GET" ENCTYPE="multipart/form-data" ACTION=search>
 	Keyword(s): <INPUT TYPE="text" NAME="q">
 	<INPUT TYPE="hidden" NAME="numResultsToSkip" value="0">
 	<INPUT TYPE="hidden" NAME="numResultsToReturn" value="20">
