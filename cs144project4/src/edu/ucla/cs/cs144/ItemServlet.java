@@ -40,19 +40,25 @@ public class ItemServlet extends HttpServlet implements Servlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+        //AuctionSearchClient is the class given by sunflower that has project3 funcionality given to us
 		AuctionSearchClient searcher = new AuctionSearchClient();
+        //get the xml as a string
 		String xml = searcher.getXMLDataForItemId(request.getParameter("id"));
+        //if the passed id doesn't exist, fail gracefully
         if (xml == "") {
             request.setAttribute("id", request.getParameter("id"));
             request.getRequestDispatcher("/ItemError.jsp").forward(request, response);
         }
+        //passing the actual page with item information
         else {
+            //initialize all the classes that need to be used to hold the item information
             MonsterBean result = new MonsterBean();
             User r_user = new User();
             ArrayList <String> r_category = new ArrayList <String>();
             ArrayList <Bid> r_bid = new ArrayList <Bid>();
     		try
     		{
+                //use project 2's xml parsing aux functions (refactoring yay)
     			Document doc = loadXMLFromString(xml);
     			Element item = (Element) doc.getFirstChild();
     			setMonsterItemID(result, item);
@@ -77,14 +83,17 @@ public class ItemServlet extends HttpServlet implements Servlet
     			e.printStackTrace();
     		}
 
+            //set all the attributes from the bean to the .jsp sections
     		request.setAttribute("title", "Item Information for "+result.getItemID());
             
     		request.setAttribute("itemID", result.getItemID());
     		request.setAttribute("name", result.getName());
+            //buildCategoryHTML takes the category bean and spits out the list of categories in HTML form
     		request.setAttribute("category", buildCategoryHTML(r_category));
     		request.setAttribute("currently", result.getCurrently());
     		request.setAttribute("first_bid", result.getFirstBid());
     		request.setAttribute("num_bids", result.getNumBids());
+            //buildBidHTML does the same thing as category aux function but with arraylist of bid beans
     		request.setAttribute("bid", buildBidHTML(r_bid));
     		request.setAttribute("location", r_user.getLocation());
     		request.setAttribute("country", r_user.getCountry());
@@ -102,6 +111,7 @@ public class ItemServlet extends HttpServlet implements Servlet
 	//helper functions down here.
 	/**************************************************/
 
+    //takes the attributes of the bid arraylist and forms a html
 	public static String buildBidHTML(ArrayList <Bid> bid_list) {
 		String result = "<dl>";
 		Bid bid = new Bid();
@@ -119,6 +129,7 @@ public class ItemServlet extends HttpServlet implements Servlet
 		return result;
 	}
 
+    //takes the attributes of the category arraylist and forms a html
 	public static String buildCategoryHTML(ArrayList <String> category_list) {
 		String result = "";
 		for (int i = 0; i < category_list.size(); ++i) {
