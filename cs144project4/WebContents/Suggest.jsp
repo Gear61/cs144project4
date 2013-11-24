@@ -15,8 +15,10 @@ function sendAjaxRequest(input)
 }
 
 // update Web page with the response from Google suggest
-function showSuggestion() {
-  if (xmlHttp.readyState == 4) {
+function showSuggestion()
+{
+  if (xmlHttp.readyState == 4)
+  {
     // get the CompleteSuggestion elements from the response
     var s = xmlHttp.responseXML.getElementsByTagName('CompleteSuggestion');
  
@@ -36,7 +38,10 @@ function showSuggestion() {
 </script>
 </head>
 <body>
-  <b>Your query:</b> <input type="text" onKeyUp="sendAjaxRequest(this.value);" /><br/>
-  <b>Suggestion</b>: <pre id="suggestion"></pre>
+	<b>Your query:</b>
+	<input type="text" onKeyUp="sendAjaxRequest(this.value);" />
+	<br />
+	<b>Suggestion</b>:
+	<pre id="suggestion"></pre>
 </body>
 </html>

@@ -2,20 +2,31 @@
 <html>
 <body>
 
-<head> <title>Keyword Search</title> </head>
+<head>
+	<title>Keyword Search</title>
+	<script type="text/javascript" src="autosuggest2.js">
+	</script>
+    <script type="text/javascript" src="suggestions2.js"></script>
+    <link rel="stylesheet" type="text/css" href="autosuggest.css" />        
+    <script type="text/javascript">
+    	window.onload = function ()
+    	{
+        	var oTextbox = new AutoSuggestControl(document.getElementById("q"), new StateSuggestions());        
+        }
+    </script>
+</head>
 <body bgcolor=white>
 
 <center>
+<a href="./">Return to Homepage</a>
 <h1>Do a Basic Keyword Search</h1>
 
-<FORM METHOD="GET" ENCTYPE="multipart/form-data" ACTION=search>
-Keyword(s): <INPUT TYPE="text" NAME="q">
+<FORM METHOD="GET" ACTION=search>
+Keyword(s): <INPUT TYPE="text" id="q" NAME="q">
 <INPUT TYPE="hidden" NAME="numResultsToSkip" value="0">
 <INPUT TYPE="hidden" NAME="numResultsToReturn" value="20">
 <INPUT TYPE=SUBMIT VALUE="Submit">
 </FORM>
-
-<br><a href="./">Return to Homepage</a>
 </center>
 
 </body>
