@@ -47,10 +47,10 @@ AutoSuggestControl.prototype.autosuggest = function(aSuggestions /*:Array*/,
 	//make sure there's at least one suggestion
 	if (aSuggestions.length > 0)
 	{
-		if (bTypeAhead)
-		{
-			this.typeAhead(aSuggestions[0]);
-		}
+		// if (bTypeAhead)
+		// {
+		// 	this.typeAhead(aSuggestions[0]);
+		// }
 
 		this.showSuggestions(aSuggestions);
 	}

@@ -62,7 +62,7 @@ StateSuggestions.prototype.requestSuggestions = function(
 	if (sTextboxValue.length > 0)
 	{
 		// send Google suggest request based on the user input
-		var request = "/eBay/suggest?q="+encodeURI(sTextboxValue);
+		var request = "/eBay/suggest?q="+encodeURIComponent(sTextboxValue);
 	
 		xmlHttp.open("GET", request); 
 		xmlHttp.onreadystatechange = showSuggestion; 
