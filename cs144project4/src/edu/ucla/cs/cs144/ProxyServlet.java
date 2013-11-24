@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ProxyServlet extends HttpServlet implements Servlet
 {
-
 	public ProxyServlet()
 	{
 	}
@@ -26,13 +25,7 @@ public class ProxyServlet extends HttpServlet implements Servlet
 		String query, test;
 		query = request.getParameter("q"); // query is null value if nothing is
 											// passed (not "null")
-		test = "";
-		/*
-		 * if (query == null) {
-		 * request.getRequestDispatcher("/Suggest.jsp").forward(request,
-		 * response); }
-		 */
-		test = "http://google.com/complete/search?output=toolbar&q=" + query;
+		test = "http://google.com/complete/search?output=toolbar&q=" + EncodingUtil.encodeURIComponent(query);
 		
 		// URL u = new URL(test);
 		// get a new http connection to google for suggest
