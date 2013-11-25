@@ -37,6 +37,23 @@ function showSuggestion()
 }
 </script>
 </head>
+  <style> 
+body
+{
+  background-size:100%;
+  background-repeat:repeat-y;
+  background-color:#E6E6E6;
+  background-position:center;
+}
+div.content
+{
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  margin-left: -250px;
+  margin-top: -52.5px
+}
+</style>
 <body>
 	<b>Your query:</b>
 	<input type="text" onKeyUp="sendAjaxRequest(this.value);" />

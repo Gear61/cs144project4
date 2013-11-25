@@ -1,10 +1,30 @@
+<!DOCTYPE html>
 <html>
     <head><title>eBay Search</title></head>
+	<style> 
+body
+{
+	background-image:url('./img/border.png');
+	background-size:100%;
+	background-repeat:repeat-y;
+	background-color:#E6E6E6;
+	background-position:center;
+}
+div.content
+{
+	position: absolute;
+	top: 35%;
+	left: 50%;
+	margin-left: -250px;
+	margin-top: -52.5px
+}
+</style>
     <body>
-    <center>
-	<h1>eBay Search Web Site</h1>
-	<a href="./keywordSearch.html">Do a Keyword Search</a><br>
-	<a href="./getItem.html">Get Auction Info by ItemID</a>
-	</center>
-	</body>
+		<div class="content">
+		<img src="./img/banner.png"/><br>
+		<img src="./img/padding.png"/><br>
+        <a href="./keywordSearch.html"><img class="kw" src="./img/keyword.png"/></a><br>
+        <a href="./getItem.html"><img class="byid" src="./img/id.png"/></a>
+		</div>
+        </body>
 </html>
