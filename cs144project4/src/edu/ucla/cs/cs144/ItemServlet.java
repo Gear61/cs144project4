@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
@@ -79,7 +80,6 @@ public class ItemServlet extends HttpServlet implements Servlet
     		}
     		catch (Exception e)
     		{
-    			xml = "WE DUN GOOFED.";
     			e.printStackTrace();
     		}
 
@@ -88,11 +88,34 @@ public class ItemServlet extends HttpServlet implements Servlet
             
     		request.setAttribute("itemID", result.getItemID());
     		request.setAttribute("name", result.getName());
+    		
+    		String buyPriceFormatted = "";
+    		if (!result.getBuyPrice().equals("NULL"))
+    		{
+    			// Set some HTTP session attributes so we don't have to spam sunflower
+    			HttpSession session = request.getSession(true);
+    			session.setAttribute("itemID", result.getItemID());
+    			session.setAttribute("itemName", result.getName());
+    			session.setAttribute("buyPrice", result.getBuyPrice());
+    			
+    			// Display buy price and link to buy the item
+    			buyPriceFormatted += result.getBuyPrice();
+    			buyPriceFormatted += "   <a href=\"./pay\">Buy Now</a>";
+    		}
+    		else
+    		{
+    			// Display N/A
+    			buyPriceFormatted = "None";
+    		}
+    		
+    		request.setAttribute("buy_price", buyPriceFormatted);
+    		
             //buildCategoryHTML takes the category bean and spits out the list of categories in HTML form
     		request.setAttribute("category", buildCategoryHTML(r_category));
     		request.setAttribute("currently", result.getCurrently());
     		request.setAttribute("first_bid", result.getFirstBid());
     		request.setAttribute("num_bids", result.getNumBids());
+    		
             //buildBidHTML does the same thing as category aux function but with arraylist of bid beans
     		request.setAttribute("bid", buildBidHTML(r_bid));
     		request.setAttribute("location", r_user.getLocation());

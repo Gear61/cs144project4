@@ -28,12 +28,19 @@ div.content
 	</FORM>
 
 	<h2>Item Information</h2>
+	
 	<b>Item ID:</b>
 	<%=request.getAttribute("itemID")%>
 	<br>
+	
+	<b>Buy Price:</b>
+	<%=request.getAttribute("buy_price")%>
+	<br>
+	
 	<b>Name:</b>
 	<%=request.getAttribute("name")%>
 	<br>
+	
 	<dl>
 		<dt>
 			<b>Category:</b>
