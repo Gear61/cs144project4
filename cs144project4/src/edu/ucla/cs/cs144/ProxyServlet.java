@@ -37,13 +37,13 @@ public class ProxyServlet extends HttpServlet implements Servlet
 		// (inputstream takes in byte by byte while inputstreamreader reads
 		// line by line)
 		BufferedReader buff = new BufferedReader(new InputStreamReader(stream, "UTF-8"));
-		String body = "", temp;
+		//read and return the response xml from google
+		String temp;
 		temp = buff.readLine();
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/xml");
 		while (temp != null)
 		{
-			// body += temp;
 			out.println(temp);
 			temp = buff.readLine();
 		}
