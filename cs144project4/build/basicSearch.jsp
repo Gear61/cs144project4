@@ -20,7 +20,7 @@ div.content
 }
 </style>
 <body>
-	<a href="./">Return to Homepage</a>
+	<a href="./">Return to Homepage</a><br>
 	<br><FORM METHOD="GET" ENCTYPE="multipart/form-data" ACTION=search>
 	Keyword(s): <INPUT TYPE="text" NAME="q">
 	<INPUT TYPE="hidden" NAME="numResultsToSkip" value="0">
