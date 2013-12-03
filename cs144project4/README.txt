@@ -8,7 +8,14 @@ We associate all item information with the HTTP session upon the loading of an i
 
 Q3: How do you guarantee that the user cannot scroll horizontally?
 
+We set the scale to a constant and then disabled user-scalable variable to 'no' in our meta statement.
+
 Q4: How do you guarantee that the width of your textbox component(s) can fit the screen width of a mobile device? Note: you have to explain "how", and you can't simply state that "we use a XXX downloaded from YYY, and it magically solve the problem."
+
+Along with Q3, dyanmically checked and set the width of the window to the device's width in our meta statement.
+
+This is the meta tag used in reference to Q3 and Q4.
+<meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
 
 Partner:
 Name: Won Kyu Lee
