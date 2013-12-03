@@ -42,14 +42,12 @@ public class ConfirmServlet extends HttpServlet implements Servlet
 			session.setAttribute("timeOfPurchase", timeOfPurchase);
 			
 			String url;
-			// Not secure, switch to https
-			if (!request.isSecure())
+			if (request.isSecure())
 			{
-				url = "https://" + request.getServerName();
-				url += ":8443" + request.getContextPath() + "/confirm.jsp";
+				url = "http://" + request.getServerName();
+				url += ":8080" + request.getContextPath() + "/confirm.jsp";
 				response.sendRedirect(url);
 			}
-			// No need to switch if it's already https
 			else
 			{
 				request.getRequestDispatcher("/confirm.jsp").forward(request, response);
