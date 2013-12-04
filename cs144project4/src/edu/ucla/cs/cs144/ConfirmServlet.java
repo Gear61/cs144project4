@@ -23,7 +23,7 @@ public class ConfirmServlet extends HttpServlet implements Servlet
 		HttpSession session = request.getSession(true);
 
 		// If user got to this URL through "hacking"
-		if (session.getAttribute("itemID") == null || session.getAttribute("itemName") == null
+		/*if (session.getAttribute("itemID") == null || session.getAttribute("itemName") == null
 				|| session.getAttribute("buyPrice") == null)
 		{
 			String message = "It looks as if you tried going to the purchase confirmation page without "
@@ -32,10 +32,11 @@ public class ConfirmServlet extends HttpServlet implements Servlet
 			request.getRequestDispatcher("/Error.jsp").forward(request, response);
 		}
 		else
-		{
+		{*/
 			// Get credit card number and current time
 			String creditCardNumber = request.getParameter("creditCardNumber");
 			String timeOfPurchase = new SimpleDateFormat("MMM-dd-yyyy h:mm aa").format(Calendar.getInstance().getTime());
+			String purchaseID = request.getParameter("purchaseID");
 			
 			// Associate them with session
 			session.setAttribute("creditCardNumber", creditCardNumber);
@@ -45,13 +46,13 @@ public class ConfirmServlet extends HttpServlet implements Servlet
 			if (request.isSecure())
 			{
 				url = "http://" + request.getServerName();
-				url += ":8080" + request.getContextPath() + "/confirm.jsp";
+				url += ":8080" + request.getContextPath() + "/confirm.jsp?id=" + purchaseID;
 				response.sendRedirect(url);
 			}
 			else
 			{
-				request.getRequestDispatcher("/confirm.jsp").forward(request, response);
+				request.getRequestDispatcher("/confirm.jsp?id=" + purchaseID).forward(request, response);
 			}
-		}
+		//}
 	}
 }

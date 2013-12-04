@@ -18,9 +18,10 @@ public class PayServlet extends HttpServlet implements Servlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession session = request.getSession(true);
+		String itemID = request.getParameter("id");
 		
 		// If user got to this URL through "hacking"
-		if (session.getAttribute("itemID") == null ||
+		/*if (session.getAttribute("itemID") == null ||
 			session.getAttribute("itemName") == null ||
 			session.getAttribute("buyPrice") == null)
 		{
@@ -29,18 +30,20 @@ public class PayServlet extends HttpServlet implements Servlet
 			request.getRequestDispatcher("/Error.jsp").forward(request, response);
 		}
 		else
-		{						
+		{*/						
 			String url;
 			if (!request.isSecure())
 			{
 				url = "https://" + request.getServerName();
-				url += ":8443" + request.getContextPath() + "/purchase.jsp";
+				url += ":8443" + request.getContextPath() + "/purchase.jsp?id=" + itemID;
 				response.sendRedirect(url);
+				// request.setAttribute("itemID", arg1)
+				// request.getRequestDispatcher("/purchase.jsp").forward(request, response);
 			}
 			else
 			{
-				request.getRequestDispatcher("/purchase.jsp").forward(request, response);
+				request.getRequestDispatcher("/purchase.jsp?id=" + itemID).forward(request, response);
 			}
-		}
+		//}
 	}
 }

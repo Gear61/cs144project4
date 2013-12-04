@@ -90,17 +90,33 @@ public class ItemServlet extends HttpServlet implements Servlet
     		request.setAttribute("name", result.getName());
     		
     		String buyPriceFormatted = "";
+    		String itemList = "";
     		if (!result.getBuyPrice().equals("NULL"))
     		{
-    			// Set some HTTP session attributes so we don't have to spam sunflower
-    			HttpSession session = request.getSession(true);
-    			session.setAttribute("itemID", result.getItemID());
-    			session.setAttribute("itemName", result.getName());
-    			session.setAttribute("buyPrice", result.getBuyPrice());
+				// Set some HTTP session attributes so we don't have to spam
+				// sunflower
+				HttpSession session = request.getSession(true);
+				itemList = (String) session.getAttribute("itemList");
+				if (itemList == null)
+				{
+					itemList = result.getItemID() + ":" + result.getName() + "~~|}" + result.getBuyPrice() + "{|~~";
+				}
+				else if (itemList.contains(result.getItemID()))
+				{
+					// do nothing
+				}
+				else
+				{
+					itemList += result.getItemID() + ":" + result.getName() + "~~|}" + result.getBuyPrice() + "{|~~";
+				}
+				session.setAttribute("itemList", itemList);
+    			//session.setAttribute("itemID", result.getItemID());
+    			//session.setAttribute("itemName", result.getName());
+    			//session.setAttribute("buyPrice", result.getBuyPrice());
     			
     			// Display buy price and link to buy the item
     			buyPriceFormatted += result.getBuyPrice();
-    			buyPriceFormatted += "   <a href=\"./pay\">Buy Now</a>";
+    			buyPriceFormatted += "   <a href=\"./pay?id=" + result.getItemID() + "\">Buy Now</a>";
     		}
     		else
     		{
